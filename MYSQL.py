@@ -11,7 +11,14 @@ mydb = mysql.connector.connect(
   buffered = True
 )
 
-date = datetime.datetime(2018, 5, 17)
+#date = datetime.datetime(2018, 5, 17)
+#date.strftime('%Y-%m-%d')
+id = input('Enter Reg no ')
+Fname = input('Enter first name')
+Lname = input('Enter last name ')
+date_entry = input('Enter a date in YYYY-MM-DD format')
+year, month, day = map(int, date_entry.split('-'))
+date = datetime.date(year, month, day)
 date.strftime('%Y-%m-%d')
 mycursor = mydb.cursor()
 #mycursor.execute("CREATE DATABASE IP")
@@ -21,6 +28,6 @@ mycursor.execute("SHOW DATABASES")
 #val = ("Greshan" "Aranha")
 #mycursor.execute(sql, val)
 sql = "INSERT INTO Detail (id, Fname, Lname, DOB) VALUES (%s, %s, %s, %s)"
-val = ("181041011", "Greshan", "Aranha", date )
+val = (id, Fname, Lname, date )
 mycursor.execute(sql, val)
 mydb.commit()
